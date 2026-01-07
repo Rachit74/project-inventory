@@ -5,6 +5,8 @@ const indexRouter = require("./routes/indexRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const projectRouter = require("./routes/projectRouter");
 
+const assetsPath = path.join(__dirname, "public");
+
 
 app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRouter);
 app.use("/categories", categoryRouter);
 app.use("/projects", projectRouter);
+
+app.use(express.static(assetsPath));
 
 
 app.set("views", path.join(__dirname, "views"));

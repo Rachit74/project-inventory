@@ -3,7 +3,7 @@ const db = require("../db/queries");
 exports.getAllCategories = async (req, res) => {
     const categories = await db.getAllCategories();
     console.log(categories);
-    res.end();
+    res.render("categories", { categories });
 };
 
 exports.getCategoryById = async (req, res) => {

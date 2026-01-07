@@ -3,48 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Create Category</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 2rem;
-            background-color: #f5f5f5;
-        }
-
-        form {
-            max-width: 400px;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-
-        label {
-            display: block;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            width: 100%;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-
-        button {
-            margin-top: 1.5rem;
-            padding: 0.7rem;
-            width: 100%;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
-
+  <div class="container">
     <h1>Create a New Category</h1>
 
-    <form action="/categories/create" method="POST">
+    <div class="card">
+      <form action="/categories/create" method="POST">
         <label for="name">Category Name</label>
         <input 
             type="text" 
@@ -63,7 +30,10 @@
         ></textarea>
 
         <button type="submit">Create Category</button>
-    </form>
+      </form>
+    </div>
 
+    <a href="/categories" class="btn btn-secondary mt-1">← Back to Categories</a>
+  </div>
 </body>
 </html>

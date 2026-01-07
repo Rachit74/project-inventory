@@ -1,22 +1,29 @@
+const db = require("../db/queries");
 
-
-exports.getAllProjects = (req, res) => {
-    res.send("All the projects will be shown  here");
-    res.end();
+exports.getAllProjects = async (req, res) => {
+    const projects = await db.getAllProjects();
+    res.render("projects.ejs", { projects });
 }
 
-exports.getProjectById = (req, res) => {
+exports.getProjectById = async(req, res) => {
     const { id } = req.params;
-    res.send(`This is the project with id: ${id}`);
-    res.end();
+    const project = await db.getProjectById(id);
+    console.log(project)
+    res.render("project_single", { project })
 }
 
 // to render the esj template for form
-exports.createProjectForm = (req,res) => {
-
+exports.createProjectForm = async (req,res) => {
+    const categories = await db.getAllCategories();
+    res.render("create_project", { categories });
 }
 
 // will handle project creation
-exports.createProject = (req, res) => {
+exports.createProject = async (req, res) => {
+    console.log(req.body);
+    db.createProject(req.body.title, req.body.description, req.body.category_id);
+    console.log("Project was added!")
+
+    res.redirect("/");
 
 }
