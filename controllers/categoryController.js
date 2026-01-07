@@ -1,12 +1,28 @@
+const db = require("../db/queries");
 
-
-exports.getAllCategories = (req, res) => {
-    res.send("All categories will be dispayed here!");
+exports.getAllCategories = async (req, res) => {
+    const categories = await db.getAllCategories();
+    console.log(categories);
     res.end();
 };
 
-exports.getCategoryById = (req, res) => {
+exports.getCategoryById = async (req, res) => {
     const { id } = req.params;
-    res.send(`This is the page for category with id: ${id}`);
+    const category = await db.getCategoryById(id);
+    console.log("SINGLE")
+    console.log(category);
     res.end();
+}
+
+// to render the esj template for form
+exports.createCategoryForm = (req,res) => {
+    res.render("create_category");
+    // res.end();
+}
+
+// will handle category creation
+exports.createCategory = async (req, res) => {
+    console.log(req.body);
+    db.createCategory(req.body.name, req.body.description);
+    res.redirect("/categoires");
 }

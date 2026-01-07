@@ -14,6 +14,10 @@ app.use("/categories", categoryRouter);
 app.use("/projects", projectRouter);
 
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+
 const PORT = 8000;
 
 app.listen(PORT, (error) => {
