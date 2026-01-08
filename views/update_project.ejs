@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Edit Project</title>
+</head>
+<body>
+
+<%- include("partials/navbar") %>
+
+<div class="container">
+  <h1>Edit Project</h1>
+
+  <div class="card">
+    <form action="/projects/update/<%= project.id %>/" method="POST">
+
+      <label for="title">Project Title</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        required
+        value="<%= project.title %>"
+      />
+
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="4"
+      ><%= project.description || "" %></textarea>
+
+      <label for="category">Category</label>
+      <select id="category" name="category_id" required>
+        <% categories.forEach(category => { %>
+          <option
+            value="<%= category.id %>"
+            <%= category.id === project.category_id ? "selected" : "" %>
+          >
+            <%= category.name %>
+          </option>
+        <% }) %>
+      </select>
+
+      <button type="submit">Update Project</button>
+    </form>
+  </div>
+
+  <div class="mt-2">
+    <a href="/projects/<%= project.id %>" class="btn btn-secondary">
+      ← Cancel
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -53,10 +53,19 @@ async function updateCategory(id, name, description) {
     await pool.query("UPDATE categories SET name = $1, description = $2 WHERE id = $3", [name, description, id]);
 }
 
+// update project
+async function updateProject(id, title, description, category_id) {
+    await pool.query("UPDATE projects SET title = $1, description = $2, category_id = $3 WHERE id = $4", [title, description, category_id, id]);
+}
+
 
 // DELETE QUERIES
 async function deleteCategory(id) {
     await pool.query("DELETE FROM categories WHERE id = $1", [id]);
+}
+
+async function deleteProject(id) {
+    await pool.query("DELETE FROM projects WHERE id = $1", [id]);
 }
 
 module.exports = {
@@ -68,5 +77,7 @@ module.exports = {
     getProjectById,
     getProjectsByCategoryId,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    updateProject,
+    deleteProject,
 }

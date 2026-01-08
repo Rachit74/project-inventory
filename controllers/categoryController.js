@@ -26,7 +26,7 @@ exports.createCategoryForm = (req,res) => {
 // will handle category creation
 exports.createCategory = async (req, res) => {
     console.log(req.body);
-    db.createCategory(req.body.name, req.body.description);
+    await db.createCategory(req.body.name, req.body.description);
     res.redirect("/categories");
 }
 
@@ -41,14 +41,14 @@ exports.updateCategoryForm = async (req,res) => {
 exports.updateCategory = async (req,res) => {
     const { id } = req.params;
     console.log(req.body);
-    db.updateCategory(id, req.body.name, req.body.description);
+    await db.updateCategory(id, req.body.name, req.body.description);
     console.log("Record Update!")
     res.redirect(`/categories/category/${id}`)
 }
 
 exports.deleteCategory = async (req, res) => {
     const { id } = req.params;
-    db.deleteCategory(id);
+    await db.deleteCategory(id);
     console.log("Category Deleted!")
     res.redirect("/categories");
 }

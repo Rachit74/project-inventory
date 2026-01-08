@@ -1,5 +1,8 @@
 const path = require("node:path");
 const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+
+
 
 const indexRouter = require("./routes/indexRouter");
 const categoryRouter = require("./routes/categoryRouter");
@@ -16,6 +19,10 @@ app.use("/categories", categoryRouter);
 app.use("/projects", projectRouter);
 
 app.use(express.static(assetsPath));
+
+app.use(expressLayouts);
+app.set("layout", "layout"); // default layout.ejs
+
 
 
 app.set("views", path.join(__dirname, "views"));
