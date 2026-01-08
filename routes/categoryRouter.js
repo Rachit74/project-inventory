@@ -1,19 +1,20 @@
 const { Router } = require("express");
 
 const categoryController = require("../controllers/categoryController");
+const requireAuth = require("../middleware/requireAuth");
 
 const categoryRouter = Router();
 
 categoryRouter.get("/", categoryController.getAllCategories);
 categoryRouter.get("/category/:id", categoryController.getCategoryById);
-categoryRouter.get("/create", categoryController.createCategoryForm);
+categoryRouter.get("/create", requireAuth, categoryController.createCategoryForm);
 
-categoryRouter.post("/create", categoryController.createCategory);
+categoryRouter.post("/create", requireAuth, categoryController.createCategory);
 
-categoryRouter.get("/update/:id", categoryController.updateCategoryForm);
-categoryRouter.post("/update/:id", categoryController.updateCategory);
+categoryRouter.get("/update/:id", requireAuth, categoryController.updateCategoryForm);
+categoryRouter.post("/update/:id", requireAuth, categoryController.updateCategory);
 
-categoryRouter.get("/delete/:id", categoryController.deleteCategory);
+categoryRouter.get("/delete/:id", requireAuth, categoryController.deleteCategory);
 
 
 module.exports = categoryRouter;
