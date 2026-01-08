@@ -1,9 +1,18 @@
 const pool = require("./pool");
 
+// CREATE QUERIES
+
 // create category function
 async function createCategory(name, description) {
     await pool.query("INSERT INTO categories (name,description) VALUES ($1, $2)", [name,description]);
 }
+
+// create project function
+async function createProject(title, description, category_id) {
+    await pool.query("INSERT INTO projects (title, description, category_id) VALUES ($1, $2, $3)", [title, description, category_id]);
+}
+
+// GET QUERIES
 
 // get all categoires
 async function getAllCategories() {
@@ -17,10 +26,7 @@ async function getCategoryById(id) {
     return rows[0];
 }
 
-// create project function
-async function createProject(title, description, category_id) {
-    await pool.query("INSERT INTO projects (title, description, category_id) VALUES ($1, $2, $3)", [title, description, category_id]);
-}
+
 
 // get all projects
 async function getAllProjects() {
@@ -40,6 +46,19 @@ async function getProjectsByCategoryId(category_id) {
     return rows;
 }
 
+// UPDATE QUERIES
+
+// update category 
+async function updateCategory(id, name, description) {
+    await pool.query("UPDATE categories SET name = $1, description = $2 WHERE id = $3", [name, description, id]);
+}
+
+
+// DELETE QUERIES
+async function deleteCategory(id) {
+    await pool.query("DELETE FROM categories WHERE id = $1", [id]);
+}
+
 module.exports = {
     createCategory,
     getCategoryById,
@@ -47,5 +66,7 @@ module.exports = {
     createProject,
     getAllProjects,
     getProjectById,
-    getProjectsByCategoryId
+    getProjectsByCategoryId,
+    updateCategory,
+    deleteCategory
 }

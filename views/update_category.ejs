@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Create Category</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Update Category <%= category.name %> </h1>
+
+    <div class="card">
+      <form action="/categories/update/<%= category.id %>" method="POST">
+        <label for="name">Category Name</label>
+        <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required
+            placeholder="e.g. Web Development"
+            value="<%= category.name %>"
+        >
+
+        <label for="description">Description</label>
+        <textarea 
+            id="description" 
+            name="description"
+            rows="4"
+            placeholder="Optional description"
+        ><%= category.description %></textarea>
+
+        <button type="submit">Update Category</button>
+      </form>
+    </div>
+
+    <!-- <a href="/categories" class="btn btn-secondary mt-1">← Back to Categories</a> -->
+  </div>
+</body>
+</html>

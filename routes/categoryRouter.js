@@ -10,4 +10,10 @@ categoryRouter.get("/create", categoryController.createCategoryForm);
 
 categoryRouter.post("/create", categoryController.createCategory);
 
+categoryRouter.get("/update/:id", categoryController.updateCategoryForm);
+categoryRouter.post("/update/:id", categoryController.updateCategory);
+
+categoryRouter.get("/delete/:id", categoryController.deleteCategory);
+
+
 module.exports = categoryRouter;
