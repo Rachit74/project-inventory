@@ -8,6 +8,13 @@ exports.getAllProjects = async (req, res) => {
 exports.getProjectById = async(req, res) => {
     const { id } = req.params;
     const project = await db.getProjectById(id);
+
+    if (!project) {
+        res.status(404).render("404", {
+            message: "Project not Found!"
+        })
+    }
+
     console.log(project)
     res.render("project_single", { project })
 }
@@ -32,8 +39,16 @@ exports.createProject = async (req, res) => {
 // to render the esj template for form
 exports.updateProjectForm = async (req,res) => {
     const { id } = req.params;
-    const categories = await db.getAllCategories();
     const project = await db.getProjectById(id);
+
+
+    if (!project) {
+        res.status(404).render("404", {
+            message: "Project not Found!"
+        })
+    }
+    
+    const categories = await db.getAllCategories();
     res.render("update_project", { categories, project });
 }
 

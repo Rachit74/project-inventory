@@ -10,6 +10,13 @@ exports.getAllCategories = async (req, res) => {
 exports.getCategoryById = async (req, res) => {
     const { id } = req.params;
     const category = await db.getCategoryById(id);
+
+    if (!category) {
+        res.status(404).render("404", {
+            message: "Category not Found!"
+        })
+    }
+
     const projects = await db.getProjectsByCategoryId(id);
     res.render("category_single", {category, projects});
     console.log("About Category: ");
@@ -34,6 +41,13 @@ exports.createCategory = async (req, res) => {
 exports.updateCategoryForm = async (req,res) => {
     const { id } = req.params;
     const category = await db.getCategoryById(id);
+
+    if (!category) {
+        res.status(404).render("404", {
+            message: "Category not Found!"
+        })
+    }
+
     console.log(category);
     res.render("update_category", { category });
 }
