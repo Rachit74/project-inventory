@@ -34,11 +34,18 @@ async function getProjectById(id) {
     return rows[0];
 }
 
+// get projects by category_id
+async function getProjectsByCategoryId(category_id) {
+    const { rows } = await pool.query("SELECT * FROM projects where category_id = $1", [category_id]);
+    return rows;
+}
+
 module.exports = {
     createCategory,
     getCategoryById,
     getAllCategories,
     createProject,
     getAllProjects,
-    getProjectById
+    getProjectById,
+    getProjectsByCategoryId
 }

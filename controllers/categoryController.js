@@ -2,6 +2,7 @@ const db = require("../db/queries");
 
 exports.getAllCategories = async (req, res) => {
     const categories = await db.getAllCategories();
+    console.log("All Categories")
     console.log(categories);
     res.render("categories", { categories });
 };
@@ -9,9 +10,12 @@ exports.getAllCategories = async (req, res) => {
 exports.getCategoryById = async (req, res) => {
     const { id } = req.params;
     const category = await db.getCategoryById(id);
-    console.log("SINGLE")
+    const projects = await db.getProjectsByCategoryId(id);
+    res.render("category_single", {category, projects});
+    console.log("About Category: ");
     console.log(category);
-    res.end();
+    console.log("Projects under Category: ");
+    console.log(projects);
 }
 
 // to render the esj template for form
@@ -24,5 +28,5 @@ exports.createCategoryForm = (req,res) => {
 exports.createCategory = async (req, res) => {
     console.log(req.body);
     db.createCategory(req.body.name, req.body.description);
-    res.redirect("/categoires");
+    res.redirect("/categories");
 }

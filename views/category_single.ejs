@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title><%= category.name %></title>
+</head>
+<body>
+  <div class="container">
+    <h1><%= category.name %></h1>
+
+    <div class="card">
+      <% if (category.description) { %>
+        <p><%= category.description %></p>
+      <% } else { %>
+        <p class="text-muted">No description provided.</p>
+      <% } %>
+    </div>
+
+    <h2 class="mt-2">Projects in this Category</h2>
+
+    <div class="list">
+      <% if (!projects || projects.length === 0) { %>
+        <p class="text-muted">No projects in this category yet.</p>
+      <% } else { %>
+        <% projects.forEach(project => { %>
+          <div class="card list-item">
+            <h3><%= project.title %></h3>
+            <a href="/projects/<%= project.id %>">View</a>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+
+    <div class="mt-2">
+      <a href="/categories" class="btn btn-secondary">← Back to Categories</a>
+      <a href="/projects/create" class="btn">+ Add Project</a>
+    </div>
+  </div>
+</body>
+</html>
