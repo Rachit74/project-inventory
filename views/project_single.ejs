@@ -1,41 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title><%= project.title %></title>
-</head>
-<body>
-  <%- include("partials/navbar") %>
+<h1><%= project.title %></h1>
 
-  <div class="container">
-    <h1><%= project.title %></h1>
+<div class="card">
+  <% if (project.category_name) { %>
+    <p class="text-muted">
+      Category:
+      <a href="/categories/<%= project.category_id %>">
+        <%= project.category_name %>
+      </a>
+    </p>
+  <% } %>
 
-    <div class="card">
-      <% if (project.category_name) { %>
-        <p class="text-muted">
-          Category:
-          <a href="/categories/<%= project.category_id %>">
-            <%= project.category_name %>
-          </a>
-        </p>
-      <% } %>
+  <p class="<%= project.description ? '' : 'text-muted' %>">
+    <%= project.description || "No description provided." %>
+  </p>
+</div>
 
-      <% if (project.description) { %>
-        <p class="mt-1"><%= project.description %></p>
-      <% } else { %>
-        <p class="text-muted mt-1">No description provided.</p>
-      <% } %>
-    </div>
-
-    <div class="mt-2">
-      <a href="/projects" class="btn btn-secondary">← Back to Projects</a>
-      <a href="/projects/update/<%= project.id %>" class="btn">Edit</a>
-      <a href="/projects/delete/<%= project.id %>" class="btn btn-danger">Delete</a>
-      
-      </form>
-    </div>
-  </div>
-</body>
-</html>
+<div class="actions mt-2">
+  <a href="/projects" class="btn btn-secondary">Back</a>
+  <a href="/projects/update/<%= project.id %>" class="btn">Edit</a>
+  <a href="/projects/delete/<%= project.id %>" class="btn btn-danger">Delete</a>
+</div>

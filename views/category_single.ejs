@@ -1,46 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title><%= category.name %></title>
-</head>
-<body>
-  <%- include("partials/navbar") %>
+<h1><%= category.name %></h1>
 
-  <div class="container">
-    <h1><%= category.name %></h1>
+<div class="card">
+  <p class="<%= category.description ? '' : 'text-muted' %>">
+    <%= category.description || "No description provided." %>
+  </p>
+</div>
 
-    <div class="card">
-      <% if (category.description) { %>
-        <p><%= category.description %></p>
-      <% } else { %>
-        <p class="text-muted">No description provided.</p>
-      <% } %>
-    </div>
+<h2 class="mt-2">Projects</h2>
 
-    <h2 class="mt-2">Projects in this Category</h2>
+<div class="grid">
+  <% if (!projects || projects.length === 0) { %>
+    <p class="text-muted">No projects in this category.</p>
+  <% } else { %>
+    <% projects.forEach(project => { %>
+      <div class="card">
+        <h3><%= project.title %></h3>
+        <a href="/projects/<%= project.id %>" class="link">View →</a>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
 
-    <div class="list">
-      <% if (!projects || projects.length === 0) { %>
-        <p class="text-muted">No projects in this category yet.</p>
-      <% } else { %>
-        <% projects.forEach(project => { %>
-          <div class="card list-item">
-            <h3><%= project.title %></h3>
-            <a href="/projects/<%= project.id %>">View</a>
-          </div>
-        <% }) %>
-      <% } %>
-    </div>
-
-    <div class="mt-2">
-      <a href="/categories" class="btn btn-secondary">← Back to Categories</a>
-      <a href="/categories/update/<%= category.id %>" class="btn btn-secondary">Update Category</a>
-      <a href="/categories/delete/<%= category.id %>" class="btn btn-secondary">Delete Category</a>
-      <a href="/projects/create" class="btn">+ Add Project</a>
-    </div>
-  </div>
-</body>
-</html>
+<div class="actions mt-2">
+  <a href="/categories" class="btn btn-secondary">Back</a>
+  <a href="/categories/update/<%= category.id %>" class="btn">Edit</a>
+  <a href="/categories/delete/<%= category.id %>" class="btn btn-danger">Delete</a>
+  <a href="/projects/create" class="btn">+ Project</a>
+</div>

@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Categories</title>
-</head>
-<body>
-  <%- include("partials/navbar") %>
+<div class="page-header">
+  <h2>All Categories</h2>
+  <a href="/categories/create" class="btn">+ Add Category</a>
+</div>
 
-  <div class="container">
-    <div class="list-item" style="margin-bottom: 1.5rem;">
-      <h2>All Categories</h2>
-      <a href="/categories/create" class="btn">+ Add Category</a>
+<div class="grid">
+  <% categories.forEach(category => { %>
+    <div class="card">
+      <h3><%= category.name %></h3>
+      <a href="/categories/category/<%= category.id %>" class="link">
+        View →
+      </a>
     </div>
-
-    <div class="list">
-      <% categories.forEach(category => { %>
-        <div class="card list-item">
-          <h3><%= category.name %></h3>
-          <a href="/categories/category/<%= category.id %>">View</a>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</body>
-</html>
+  <% }) %>
+</div>

@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Project Inventory</title>
-</head>
-<body>
-  <%- include("partials/navbar") %>
+<h1>Project Inventory</h1>
+<p class="text-muted">Organize your projects by category</p>
 
-  <div class="container">
-    <h1>Project Inventory</h1>
-    <p class="text-muted">Organize your projects by category</p>
-
-    <div class="card">
-      <nav>
-        <a href="/categories" class="btn">Explore Categories</a>
-        <a href="/projects" class="btn btn-secondary">Explore Projects</a>
-      </nav>
-    </div>
-  </div>
-</body>
-</html>
+<div class="card actions">
+  <a href="/categories" class="btn">Explore Categories</a>
+  <a href="/projects" class="btn btn-secondary">Explore Projects</a>
+</div>

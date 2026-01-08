@@ -14,14 +14,14 @@ const assetsPath = path.join(__dirname, "public");
 app = express();
 app.use(express.urlencoded({ extended: true }));
 
+app.use(expressLayouts);
+app.set("layout", "layout"); // default layout.ejs
+
 app.use("/", indexRouter);
 app.use("/categories", categoryRouter);
 app.use("/projects", projectRouter);
 
 app.use(express.static(assetsPath));
-
-app.use(expressLayouts);
-app.set("layout", "layout"); // default layout.ejs
 
 
 

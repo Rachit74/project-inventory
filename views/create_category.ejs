@@ -1,41 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Create Category</title>
-</head>
-<body>
-  <%- include("partials/navbar") %>
+<h1>Create Category</h1>
 
-  <div class="container">
-    <h1>Create a New Category</h1>
+<div class="card">
+  <form action="/categories/create" method="POST">
+    <label>Name</label>
+    <input type="text" name="name" required />
 
-    <div class="card">
-      <form action="/categories/create" method="POST">
-        <label for="name">Category Name</label>
-        <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required
-            placeholder="e.g. Web Development"
-        >
+    <label>Description</label>
+    <textarea name="description" rows="4"></textarea>
 
-        <label for="description">Description</label>
-        <textarea 
-            id="description" 
-            name="description"
-            rows="4"
-            placeholder="Optional description"
-        ></textarea>
-
-        <button type="submit">Create Category</button>
-      </form>
-    </div>
-
-    <a href="/categories" class="btn btn-secondary mt-1">← Back to Categories</a>
-  </div>
-</body>
-</html>
+    <button class="btn">Create</button>
+  </form>
+</div>
