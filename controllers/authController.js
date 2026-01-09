@@ -1,4 +1,4 @@
-const db = require("../db/queries");
+const db = require("../db");
 const bcrypt = require("bcrypt");
 
 exports.userLoginForm = async (req, res) => {
@@ -8,7 +8,7 @@ exports.userLoginForm = async (req, res) => {
 
 exports.userLogin = async (req, res) => {
     const { username, password } = req.body;
-    const user = await db.getUserByUsername(username);
+    const user = await db.users.getUserByUsername(username);
 
     if (!user) {
         return res.status(404).render("login", {
@@ -52,7 +52,7 @@ exports.userSignup = async (req, res) => {
     try {
 
         const hashed_user_password = await bcrypt.hash(password, 10);
-        await db.createUser(username,hashed_user_password);
+        await db.users.createUser(username,hashed_user_password);
 
         res.redirect("/auth/login");
 

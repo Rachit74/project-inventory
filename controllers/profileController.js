@@ -1,4 +1,4 @@
-const db = require("../db/queries");
+const db = require("../db");
 
 exports.userProfile = async (req, res) => {
     const user = req.session.user;
@@ -15,7 +15,7 @@ exports.updateUser = async (req, res) => {
     const newUsername = req.body.username;
     const userId = req.session.user.id;
 
-    const updatedUser = await db.updateUser(userId, newUsername);
+    const updatedUser = await db.users.updateUser(userId, newUsername);
 
     // sync session
     req.session.user.username = updatedUser.username;
@@ -28,7 +28,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     const userId = req.session.user.id;
 
-    await db.deleteUser(userId);
+    await db.users.deleteUser(userId);
     
     res.redirect("/auth/logout");
 
