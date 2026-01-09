@@ -38,3 +38,34 @@ exports.logout = async (req,res) => {
         res.redirect("/auth/login");
     })
 }
+
+exports.userSignupForm = async (req, res) => {
+    res.render("signup.ejs", {
+        error: NaN
+    })
+}
+
+exports.userSignup = async (req, res) => {
+    const { username, password } = req.body;
+    console.log(req.body);
+
+    try {
+
+        const hashed_user_password = await bcrypt.hash(password, 10);
+        await db.createUser(username,hashed_user_password);
+
+        res.redirect("/auth/login");
+
+    } catch (error) {
+        
+        if (error.code === "23505") {
+            return res.status(409).render("signup", {
+                error: "Username already exists",
+            });
+        }
+
+        throw error;
+
+    }
+    
+};

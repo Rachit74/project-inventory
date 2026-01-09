@@ -1,0 +1,40 @@
+<h1>Create an Account</h1>
+<p class="text-muted">Sign up to start managing your projects</p>
+
+<% if (typeof error !== "undefined" && error) { %>
+  <div class="flash flash-error">
+    <span><%= error %></span>
+  </div>
+<% } %>
+
+<div class="card auth-card">
+  <form action="/auth/signup" method="POST">
+
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Enter username"
+      required
+    />
+
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Enter password"
+      required
+    />
+
+    <button type="submit" class="btn full-width">
+      Sign Up
+    </button>
+  </form>
+</div>
+
+<p class="text-muted mt-2">
+  Already have an account?
+  <a href="/auth/login" class="link">Log in</a>
+</p>

@@ -75,6 +75,11 @@ async function getUserByUsername(username) {
     return rows[0];
 }
 
+async function createUser(username, password) {
+    const { rows } =  await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [username, password]);
+    return rows[0];
+}
+
 module.exports = {
     createCategory,
     getCategoryById,
@@ -87,5 +92,6 @@ module.exports = {
     deleteCategory,
     updateProject,
     deleteProject,
-    getUserByUsername
+    getUserByUsername,
+    createUser
 }
