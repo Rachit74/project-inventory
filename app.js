@@ -10,6 +10,7 @@ const indexRouter = require("./routes/indexRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const projectRouter = require("./routes/projectRouter");
 const authRouter = require("./routes/authRouter");
+const profileRouter = require("./routes/profileRouter");
 
 const assetsPath = path.join(__dirname, "public");
 
@@ -39,6 +40,7 @@ app.use("/", indexRouter);
 app.use("/categories", categoryRouter);
 app.use("/projects", projectRouter);
 app.use("/auth", authRouter);
+app.use("/user", profileRouter);
 
 app.use(express.static(assetsPath));
 

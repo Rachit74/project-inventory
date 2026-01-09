@@ -1,0 +1,37 @@
+<h1>Your Profile</h1>
+<p class="text-muted">Account information</p>
+
+<div class="card profile-card">
+  <div class="profile-row">
+    <span class="label">Username</span>
+    <span class="value"><%= user.username %></span>
+  </div>
+
+  <div class="profile-row">
+    <span class="label">User ID</span>
+    <span class="value"><%= user.id %></span>
+  </div>
+</div>
+
+<h2 class="mt-2">Your Categories</h2>
+<div class="card">
+  <ul class="dummy-list">
+    <li>Web Development</li>
+    <li>Personal Projects</li>
+    <li>Learning</li>
+  </ul>
+</div>
+
+<h2 class="mt-2">Your Projects</h2>
+<div class="card">
+  <ul class="dummy-list">
+    <li>Project Inventory App</li>
+    <li>Portfolio Website</li>
+    <li>API Practice</li>
+  </ul>
+</div>
+
+<div class="actions mt-2">
+  <a href="/profile/update" class="btn">Update Info</a>
+  <a href="/profile/delete" class="btn btn-danger">Delete Account</a>
+</div>

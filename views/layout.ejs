@@ -16,7 +16,7 @@
         <a href="/projects">Projects</a>
 
         <% if (user) { %>
-        <a href=""><%= user.username %></a>
+        <a href="/user/profile"><%= user.username %></a>
         <a href="/auth/logout">Logout</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
