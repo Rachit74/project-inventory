@@ -1,0 +1,36 @@
+<h1>Update Profile</h1>
+<p class="text-muted">Update Profile</p>
+
+<% if (typeof error !== "undefined" && error) { %>
+  <div class="flash flash-error">
+    <span><%= error %></span>
+  </div>
+<% } %>
+
+<div class="card auth-card">
+  <form action="/user/profile/update" method="POST">
+
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Enter username"
+      required
+    />
+
+    <!-- <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Enter password"
+      required
+    /> -->
+
+    <button type="submit" class="btn full-width">
+      Save
+    </button>
+  </form>
+</div>
+

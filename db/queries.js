@@ -80,6 +80,22 @@ async function createUser(username, password) {
     return rows[0];
 }
 
+// USER UPDATE QUERY
+async function updateUser(userId, newUsername) {
+    const { rows } = await pool.query(
+        "UPDATE users SET username = $1 WHERE id = $2 RETURNING id, username",
+        [newUsername, userId]
+    );
+    return rows[0];
+}
+
+async function deleteUser(userId) {
+    await pool.query(
+        "DELETE FROM users WHERE id = $1",
+        [userId]
+    );
+}
+
 module.exports = {
     createCategory,
     getCategoryById,
@@ -93,5 +109,7 @@ module.exports = {
     updateProject,
     deleteProject,
     getUserByUsername,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser
 }
