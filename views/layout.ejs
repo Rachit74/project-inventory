@@ -16,12 +16,11 @@
         <a href="/projects">Projects</a>
 
         <% if (user) { %>
-        <span>Hello, <%= user.username %></span>
-        <form action="/auth/logout" method="POST">
-        <button>Logout</button>
-        </form>
+        <a href=""><%= user.username %></a>
+        <a href="/auth/logout">Logout</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
+        <a href="/auth/signup">signup</a>
         <% } %>
       </nav>
     </div>
