@@ -10,6 +10,13 @@
     </p>
   <% } %>
 
+    <p class="text-muted">
+      Created by:
+      <strong>
+        <%= project.username %>
+      </strong>
+    </p>
+
   <p class="<%= project.description ? '' : 'text-muted' %>">
     <%= project.description || "No description provided." %>
   </p>

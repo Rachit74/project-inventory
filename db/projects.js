@@ -13,10 +13,15 @@ async function getAllProjects() {
 }
 
 async function getProjectById(id) {
-  const { rows } = await pool.query(
-    "SELECT * FROM projects WHERE id = $1",
-    [id]
-  );
+      const { rows } = await pool.query(
+          `
+          SELECT p.*, u.username
+          FROM projects p
+          JOIN users u ON u.id = p.created_by
+          WHERE p.id = $1
+          `,
+          [id]
+      );
   return rows[0];
 }
 
